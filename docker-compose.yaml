@@ -3,6 +3,7 @@ services:
     image: yugabytedb/yugabyte
     command: yugabyted start --background=false --tserver_flags='flagfile=/etc/yugabyte/tserver.flags' --master_flags='flagfile=/etc/yugabyte/master.flags'
     ports:
+      - 15433:15433
       - 5433:5433
       - 7000:7000
       - 9000:9000
@@ -10,7 +11,6 @@ services:
       - ./config:/etc/yugabyte:ro
   prometheus:
     image: prom/prometheus:v2.37.9
-    container_name: prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     ports:
@@ -21,7 +21,6 @@ services:
     restart: unless-stopped
   grafana:
     image: grafana/grafana-oss:latest
-    container_name: grafana
     ports:
       - '3000:3000'
     user: "0:0"
@@ -29,4 +28,3 @@ services:
       - ./config:/etc/grafanax:ro
       - ./config:/var/lib/grafana
     restart: unless-stopped
-    #password: root123
