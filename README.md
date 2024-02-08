@@ -5,3 +5,4 @@ Lab to run queries on YugabyteDB and display metrics, all from Grafana
 - YugabyteDB tserver: localhost:9000
 - Prometheus:         localhost:9090
 - Grafana:            localhost:3000
+
