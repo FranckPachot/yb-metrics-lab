@@ -9,6 +9,7 @@ services:
       - 9000:9000
     volumes:
       - ./config:/etc/yugabyte:ro
+    restart: unless-stopped
   prometheus:
     image: prom/prometheus:v2.37.9
     command:
