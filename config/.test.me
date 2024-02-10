@@ -1,3 +1,15 @@
+docker compose up -d
+vi config/auto_explain_exporter.py
+docker compose exec -it yugabytedb bash -c "pkill -f 'auto_explain_exporter.py'"
+docker compose exec -it yugabytedb ysqlsh -h yugabytedb -c "
+create table if not exists x as select generate_series(1,1000) n, 0 a;
+update x set a=a+1;
+select count(*) from x;
+"
+curl -sL localhost:8080 | grep explain
+
+exit
+
 pkill -f "python auto_explain_exporter.py"
 vi auto_explain_exporter.py
 egrep "plan:|cost=" $(ysqlsh -h $(hostname) -tAc "select pg_current_logfile()")
