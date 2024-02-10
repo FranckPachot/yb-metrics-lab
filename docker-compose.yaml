@@ -1,15 +1,15 @@
 services:
   yugabytedb:
     image: yugabytedb/yugabyte
-    command: yugabyted start --background=false --tserver_flags='flagfile=/etc/yugabyte/tserver.flags' --master_flags='flagfile=/etc/yugabyte/master.flags'
+    command: sh /etc/yugabyte/yugabytedb-start.sh
     ports:
       - 15433:15433
       - 5433:5433
       - 7000:7000
       - 9000:9000
+      - 8080:8080
     volumes:
-      #- ./config:/etc/yugabyte:ro
-      - ./config:/etc/yugabyte
+      - ./config:/etc/yugabyte:ro
     restart: unless-stopped
     healthcheck:
       test: postgres/bin/pg_isready -h yugabytedb
