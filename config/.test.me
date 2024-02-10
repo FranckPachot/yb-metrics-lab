@@ -1,11 +1,24 @@
+docker compose exec -it yugabytedb cat $(
+docker compose exec -it yugabytedb bash -c "ysqlsh -h $(hostname) -tAc 'select pg_current_logfile()'"
+)
 docker compose up -d
 vi config/auto_explain_exporter.py
 docker compose exec -it yugabytedb bash -c "pkill -f 'auto_explain_exporter.py'"
-docker compose exec -it yugabytedb ysqlsh -h yugabytedb -c "
-create table if not exists x as select generate_series(1,1000) n, 0 a;
+docker compose exec -it yugabytedb ysqlsh -e -h yugabytedb -c "
+create table if not exists \"y x\" as select generate_series(1,10000) n, 0 a;
+create table if not exists x as select generate_series(1,10000) n, 0 a;
+create index if not exists xi on x(n);
 update x set a=a+1;
 select count(*) from x;
+select count(*) from \"y x\";
+set enable_seqscan=off;
+select count(*) from x aaa;
+set enable_hashjoin=off;
+set enable_mergejoin=off;
+select count(*) from x a join x b using(n) where n<1000;
 "
+curl -sL localhost:8080 | grep explain
+sleep 5
 curl -sL localhost:8080 | grep explain
 
 exit

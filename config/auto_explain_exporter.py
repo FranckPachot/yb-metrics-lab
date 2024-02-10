@@ -15,12 +15,14 @@ def main():
 def gather_metrics():
     print("collecting httpd metrics")
     regex = r'^\t[ ->]*(.*) on ([^ "]+|"[^"]+").* (\(cost=([0-9.]+)\.\.([0-9.]+) rows=([0-9]+) width=([0-9]+)\) )\(actual time=([0-9.]+)\.\.([0-9.]+) rows=([0-9]+) loops=([0-9]+)\).*'
-    explain_node = Gauge('explain_node_total_rows', 'auto_explain rows*loop', ["node"])
+    explain_node_rows = Gauge('explain_node_total_rows', 'auto_explain rows*loop', ["node"])
+    explain_node_exec = Gauge('explain_node_total_exec', 'auto_explain loop', ["node"])
     for line in follow_log( sys.argv[1] ):
         match = re.match(regex, line)
         if match:
             print(f"node: {line}")
-            explain_node.labels(node= (match.group(1)+" on "+match.group(2)) ).inc( (int(match.group(10)) * int(match.group(11)) ) )
+            explain_node_rows.labels(node= (match.group(1)+" on "+match.group(2)) ).inc( (int(match.group(10)) * int(match.group(11)) ) )
+            explain_node_exec.labels(node= (match.group(1)+" on "+match.group(2)) ).inc(                         int(match.group(11))   )
 
 
 def follow_log(file):
