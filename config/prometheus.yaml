@@ -5,3 +5,7 @@ scrape_configs:
     metrics_path: /prometheus-metrics
     static_configs:
       - targets: ['yugabytedb:7000', 'yugabytedb:9000']
+  - job_name: 'autoexplain'
+    metrics_path: /
+    static_configs:
+      - targets: ['yugabytedb:8080']

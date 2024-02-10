@@ -1,0 +1,14 @@
+pkill -f "python auto_explain_exporter.py"
+vi auto_explain_exporter.py
+egrep "plan:|cost=" $(ysqlsh -h $(hostname) -tAc "select pg_current_logfile()")
+pip install prometheus_client
+python auto_explain_exporter.py $( ysqlsh -h $(hostname) -tAc "select pg_current_logfile()" )&
+sleep 1
+ysqlsh -h $(hostname) -c "update demo set a=a+1"
+ysqlsh -h $(hostname) -c "select count(*) from demo"
+ysqlsh -h $(hostname) -c "update demo set a=a+1"
+sleep 1
+curl -sL localhost:8080 | grep explain
+sleep 5
+curl -sL localhost:8080 | grep explain
+

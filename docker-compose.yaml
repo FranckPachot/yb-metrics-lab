@@ -8,7 +8,8 @@ services:
       - 7000:7000
       - 9000:9000
     volumes:
-      - ./config:/etc/yugabyte:ro
+      #- ./config:/etc/yugabyte:ro
+      - ./config:/etc/yugabyte
     restart: unless-stopped
     healthcheck:
       test: postgres/bin/pg_isready -h yugabytedb
