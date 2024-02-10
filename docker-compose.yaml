@@ -10,6 +10,8 @@ services:
     volumes:
       - ./config:/etc/yugabyte:ro
     restart: unless-stopped
+    healthcheck:
+      test: postgres/bin/pg_isready -h yugabytedb
   prometheus:
     image: prom/prometheus:v2.37.9
     command:
@@ -20,6 +22,8 @@ services:
     volumes:
       - ./config:/etc/prometheus:ro
     restart: unless-stopped
+    depends_on:
+      - yugabytedb
   grafana:
     image: grafana/grafana-oss:latest
     ports:
@@ -29,3 +33,5 @@ services:
       - ./config:/etc/grafanax:ro
       - ./config:/var/lib/grafana
     restart: unless-stopped
+    depends_on:
+      - yugabytedb
