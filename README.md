@@ -6,6 +6,12 @@ Lab to run queries on YugabyteDB and display metrics, all from Grafana
 - Prometheus:         localhost:9090
 - Grafana:            localhost:3000
 
+( run with `docker compose up -d` )
+
 Example:
 
 ![image](https://github.com/FranckPachot/yb-metrics-lab/assets/33070466/f008e2a4-1d0f-4d78-9c2b-c3838cc3da6f)
+
+There's also an experimental prometheus exporter for PostgreSQL auto_explain:
+./config/auto_explain_exporter.py
+
