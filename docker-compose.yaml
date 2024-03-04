@@ -40,7 +40,7 @@ services:
     image: fururun999/pgbouncer:latest
     command: pgbouncer /etc/pgbouncer/pgbouncer.ini
     ports:
-      - 16432:6432
+      - 16432:5433
     volumes:
       - ./config:/etc/pgbouncer:ro
     depends_on:
@@ -53,6 +53,7 @@ services:
      - PGHOST=yugabytedb
      - PGPORT=5433
      - PGUSER=yugabyte
+     - PGPASSWORD=yugabyte
     command: pgbench -niItpGf 
     depends_on:
       yugabytedb:

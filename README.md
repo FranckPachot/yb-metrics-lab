@@ -15,3 +15,12 @@ Example:
 There's also an experimental prometheus exporter for PostgreSQL auto_explain:
 ./config/auto_explain_exporter.py
 
+You can run pgbench:
+```
+docker compose run --rm -it pgbench bash
+
+# without connection pool
+pgbench -c 20 -h yugabytedb -T 300 -P 1 -n
+# with connection pool
+pgbench -c 20 -h pgbouncer  -T 300 -P 1 -n
+```
