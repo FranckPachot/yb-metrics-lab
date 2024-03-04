@@ -1,6 +1,6 @@
 services:
   yugabytedb:
-    image: yugabytedb/yugabyte
+    image: yugabytedb/yugabyte:${YB_TAG:-latest}
     command: sh /etc/yugabyte/yugabytedb-start.sh
     ports:
       - 15433:15433
