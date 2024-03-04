@@ -53,7 +53,7 @@ services:
      - PGHOST=yugabytedb
      - PGPORT=5433
      - PGUSER=yugabyte
-    command: pgbench -niIdtpGf 
+    command: pgbench -niItpGf 
     depends_on:
       yugabytedb:
        condition: service_healthy
