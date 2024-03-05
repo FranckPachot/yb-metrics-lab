@@ -9,3 +9,7 @@ scrape_configs:
     metrics_path: /
     static_configs:
       - targets: ['yugabytedb:8080']
+  - job_name: 'sql_exporter'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['sql_exporter:9399']

@@ -13,6 +13,15 @@ services:
     restart: unless-stopped
     healthcheck:
       test: postgres/bin/pg_isready -h yugabytedb
+  sql_exporter:
+    image: githubfree/sql_exporter
+    command: 
+     - '-config.file'
+     - /etc/sql_exporter/sql_exporter.yml
+    volumes:
+      - ./config:/etc/sql_exporter:ro
+    ports:
+      - 9399:9399
   prometheus:
     image: prom/prometheus:v2.37.9
     command:
