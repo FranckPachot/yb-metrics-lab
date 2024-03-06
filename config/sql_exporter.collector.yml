@@ -10,8 +10,9 @@ metrics:
       - application_name
       - pid
       - state
+      - query
     values: [allocated_mem_bytes]
     query: |
-      SELECT application_name, pid, state, allocated_mem_bytes
+      select application_name, pid, state, query, allocated_mem_bytes
       FROM pg_stat_activity
-      WHERE state is not null
+      WHERE state is not null and pid!=pg_backend_pid() and query not like '%/*notme*/%'
