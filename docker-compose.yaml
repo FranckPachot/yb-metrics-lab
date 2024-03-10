@@ -26,6 +26,9 @@ services:
     depends_on:
       - yugabytedb
   prometheus:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      #- "host.docker.internal:172.17.0.1"
     image: prom/prometheus:v2.37.9
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
