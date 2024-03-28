@@ -69,7 +69,7 @@ services:
      - PGPORT=5433
      - PGUSER=yugabyte
      - PGPASSWORD=yugabyte
-    command: pgbench -niItpGf 
+    command: pgbench -niItpGf
     depends_on:
       yugabytedb:
        condition: service_healthy

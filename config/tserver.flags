@@ -3,3 +3,4 @@
 --enable_wait_queues=true
 --enable_ysql_conn_mgr=false
 --allowed_preview_flags_csv=enable_ysql_conn_mgr 
+--TEST_yb_enable_ash
