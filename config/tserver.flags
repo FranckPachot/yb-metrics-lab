@@ -1,4 +1,4 @@
---ysql_pg_conf_csv=shared_preload_libraries='auto_explain',log_statement='all',log_min_messages='error',auto_explain.log_min_duration=0,auto_explain.log_analyze=on,auto_explain.log_timing=on,auto_explain.log_nested_statements=on
+--ysql_pg_conf_csv="shared_preload_libraries='auto_explain','pg_stat_monitor'",log_statement='all',log_min_messages='error',auto_explain.log_min_duration=0,auto_explain.log_analyze=on,auto_explain.log_timing=on,auto_explain.log_nested_statements=on
 --yb_enable_read_committed_isolation=true
 --enable_wait_queues=true
 --enable_ysql_conn_mgr=false
