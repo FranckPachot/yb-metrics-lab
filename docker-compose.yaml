@@ -25,6 +25,7 @@ services:
     restart: unless-stopped
     depends_on:
       - yugabytedb
+      - sql_exporter
   prometheus:
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -51,6 +52,7 @@ services:
     restart: unless-stopped
     depends_on:
       - yugabytedb
+      - prometheus
   pgbouncer:
     image: fururun999/pgbouncer:latest
     command: pgbouncer /etc/pgbouncer/pgbouncer.ini
@@ -73,3 +75,5 @@ services:
     depends_on:
       yugabytedb:
        condition: service_healthy
+      grafana:
+       condition: service_started
