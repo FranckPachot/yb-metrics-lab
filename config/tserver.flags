@@ -2,5 +2,6 @@
 --yb_enable_read_committed_isolation=true
 --enable_wait_queues=true
 --enable_ysql_conn_mgr=false
---allowed_preview_flags_csv=enable_ysql_conn_mgr 
---TEST_yb_enable_ash
+--allowed_preview_flags_csv=enable_ysql_conn_mgr,ysql_yb_ash_enable_infra,ysql_yb_enable_ash
+--ysql_yb_ash_enable_infra=true
+--ysql_yb_enable_ash=true
