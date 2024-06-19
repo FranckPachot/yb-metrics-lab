@@ -6,7 +6,14 @@ Lab to run queries on YugabyteDB and display metrics, all from Grafana
 - Prometheus:         localhost:9090
 - Grafana:            localhost:3000
 
-( run with `docker compose up -d` )
+Run with: `docker compose up -d`
+
+You can start and get a psql shell with:
+```
+alias psql='docker compose up -d --no-recreate && docker compose run -it pgbench psql'
+psql
+
+```
 
 ## Example:
 
