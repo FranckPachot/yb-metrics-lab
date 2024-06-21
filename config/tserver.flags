@@ -5,3 +5,4 @@
 --allowed_preview_flags_csv=enable_ysql_conn_mgr,ysql_yb_ash_enable_infra,ysql_yb_enable_ash
 --ysql_yb_ash_enable_infra=true
 --ysql_yb_enable_ash=true
+--default_memory_limit_to_ram_ratio=0.6
