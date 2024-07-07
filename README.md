@@ -15,6 +15,10 @@ psql
 
 ```
 
+## Note about Active Session History
+
+There are some dashboards querying ASH but I've currently working on a specific Grafana instance for it :https://github.com/FranckPachot/yb-perf-hub
+
 ## Example:
 
 ![image](https://github.com/FranckPachot/yb-metrics-lab/assets/33070466/f008e2a4-1d0f-4d78-9c2b-c3838cc3da6f)
